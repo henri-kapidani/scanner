@@ -16,9 +16,11 @@ btnStart.addEventListener('click', function () {
     url = eleUrl.value;
     if (interval) {
         clearInterval(interval);
+        btnStart.innerText = 'Start';
         interval = null;
     } else {
         interval = setInterval(sendPicture, timeout);
+        btnStart.innerText = 'Stop';
     }
 });
 
