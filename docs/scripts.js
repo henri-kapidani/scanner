@@ -1,5 +1,5 @@
 let url;
-const timeout = 2000;
+let timeout;
 
 const width = 320;
 let height = 0;
@@ -9,11 +9,13 @@ let interval = null;
 video = document.getElementById('video');
 canvas = document.getElementById('canvas');
 btnStart = document.getElementById('btn-start');
+eleTimeout = document.getElementById('timeout');
 eleUrl = document.getElementById('server-url');
 eleError = document.getElementById('error');
 
 btnStart.addEventListener('click', function () {
     url = eleUrl.value;
+    timeout = parseInt(eleTimeout.value);
     if (interval) {
         clearInterval(interval);
         btnStart.innerText = 'Start';
