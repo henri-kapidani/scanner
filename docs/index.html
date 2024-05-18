@@ -4,14 +4,24 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Camera</title>
-        <link rel="stylesheet" href="/style.css" />
-        <script src="/scripts.js" defer></script>
+        <link rel="stylesheet" href="style.css" />
+        <script src="scripts.js" defer></script>
     </head>
     <body>
         <div class="contentarea">
             <video id="video">Video stream not available.</video>
             <canvas id="canvas"></canvas>
         </div>
+        <br />
+        <label for="server-url">Server url</label>
+        <input
+            type="text"
+            id="server-url"
+            value="http://192.168.0.xxx:5000/upload"
+        />
+        <br />
+        <br />
         <button id="btn-start">Start</button>
+        <div id="error"></div>
     </body>
 </html>

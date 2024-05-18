@@ -1,0 +1,22 @@
+body {
+    text-align: center;
+}
+
+#video {
+    /* display: none; */
+    width: 320px;
+    height: 240px;
+}
+
+#canvas {
+    display: none;
+}
+
+input {
+    padding: 1em;
+    width: 250px;
+}
+
+button {
+    padding: 1em;
+}

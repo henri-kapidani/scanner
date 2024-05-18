@@ -1,4 +1,4 @@
-const url = '/upload';
+let url;
 const timeout = 2000;
 
 const width = 320;
@@ -9,14 +9,15 @@ let interval = null;
 video = document.getElementById('video');
 canvas = document.getElementById('canvas');
 btnStart = document.getElementById('btn-start');
+eleUrl = document.getElementById('server-url');
+eleError = document.getElementById('error');
 
 btnStart.addEventListener('click', function () {
+    url = eleUrl.value;
     if (interval) {
-        console.log('true');
         clearInterval(interval);
         interval = null;
     } else {
-        console.log('false');
         interval = setInterval(sendPicture, timeout);
     }
 });
@@ -29,6 +30,7 @@ navigator.mediaDevices
     })
     .catch((err) => {
         console.error(`An error occurred: ${err}`);
+        eleError.innerText = `An error occurred ` + JSON.stringify(err);
     });
 
 video.addEventListener(
@@ -60,7 +62,6 @@ function takePicture() {
         canvas.width = width;
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
-
         const data = canvas.toDataURL('image/png');
         return data;
     }
@@ -68,10 +69,13 @@ function takePicture() {
 
 function sendPicture() {
     const picture = takePicture();
-    console.log(picture);
+    // console.log(picture);
     fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ picture }),
+    }).catch((err) => {
+        console.error(`An error occurred: ${err}`);
+        eleError.innerText = `An error occurred ` + JSON.stringify(err);
     });
 }
